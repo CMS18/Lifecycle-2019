@@ -50,7 +50,7 @@ namespace AssignmentALM
             {
                 endpoints.MapControllerRoute(
                     name: "default",
-                    pattern: "{controller=Home}/{action=Index}/{id?}");
+                    pattern: "{controller=EmranBank}/{action=Index}/{id?}");
             });
         }
     }
