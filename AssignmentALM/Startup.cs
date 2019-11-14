@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AssignmentALM.Models;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -20,11 +21,20 @@ namespace AssignmentALM
 
         public IConfiguration Configuration { get; }
 
+
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddSingleton<BankRepository>();
+            //var repository = new Models.BankRepository();
+            //repository.Customers.Add(new Customer(1, "Calle ", "Statdler" ,2, "John", "Lars"));
+            //repository.Accounts.Add(new Account(1, 1, 5000000m ));
+            //services.AddSingleton(repository);
+
         }
+
+
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
