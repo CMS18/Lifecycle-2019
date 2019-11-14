@@ -27,10 +27,62 @@ namespace AssignmentALM
         {
             services.AddControllersWithViews();
             services.AddSingleton<BankRepository>();
-            //var repository = new Models.BankRepository();
-            //repository.Customers.Add(new Customer(1, "Calle ", "Statdler" ,2, "John", "Lars"));
-            //repository.Accounts.Add(new Account(1, 1, 5000000m ));
-            //services.AddSingleton(repository);
+            var repository = new Models.BankRepository();
+
+            var c1 = new Customer()
+            {
+                CustomerNumber = 1,
+                FirstName = "Calle",
+                LastName = "Carlsson"
+            };
+
+            var c2 = new Customer()
+            {
+                CustomerNumber = 2,
+                FirstName = "Johan",
+                LastName = "lars"
+            };
+
+            var c3 = new Customer()
+            {
+                CustomerNumber = 3,
+                FirstName = "erik",
+                LastName = "Dahl"
+            };
+
+            var a1 = new Account()
+            {
+                AccountHolder = c1,
+                AccountNumber = 2131,
+                Balance = 5000
+            };
+
+            var a2 = new Account()
+            {
+                AccountHolder = c2,
+                AccountNumber = 980081,
+                Balance = 327000
+            };
+
+            var a3 = new Account()
+            {
+                AccountHolder = c3,
+                AccountNumber = 54081,
+                Balance = 127000
+            };
+            c1.Accounts.Add(a1);
+            repository.Customers.Add(c1);
+            repository.Accounts.Add(a1);
+            c2.Accounts.Add(a2);
+            repository.Customers.Add(c2);
+            repository.Accounts.Add(a2);
+            c3.Accounts.Add(a3);
+            repository.Customers.Add(c3);
+            repository.Accounts.Add(a3);
+
+            services.AddSingleton(repository);
+
+
 
         }
 
@@ -65,3 +117,6 @@ namespace AssignmentALM
         }
     }
 }
+
+       
+

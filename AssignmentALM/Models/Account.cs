@@ -11,7 +11,7 @@ namespace AssignmentALM.Models
 
         public int AccountNumber { get; set; }
         public Customer AccountHolder { get; set; }
-        public Decimal Balance { get; private set; }
+        public Decimal Balance { get; set; }
 
     }
 }
