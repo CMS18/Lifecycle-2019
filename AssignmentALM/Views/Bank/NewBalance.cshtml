@@ -1,0 +1,25 @@
+﻿
+
+@model AssignmentALM.Models.ViewModels.NewBalanceViewModel
+
+<div class="text-center">
+    <h1 class="display-4">Withdraw and deposit </h1>
+    @if (Model.dispalyAlert != null)
+    {
+        <span>@Model.dispalyAlert</span>
+    }
+    <span asp-validation-for="Amount" class="text-danger"></span>
+    <form asp-action="ChangeBalance" asp-controller="Bank" method="post">
+        <fieldset>
+            <label asp-for="Account">
+            </label>
+            <input type="text" asp-for="Account" />
+
+            <label asp-for="Amount">
+            </label>
+            <input type="text" asp-for="Amount" />
+        </fieldset>
+        <input type="submit" asp-for="updateBalance" value="withdraw" />
+        <input type="submit" asp-for="updateBalance" value="deposit" />
+    </form>
+</div>

@@ -8,5 +8,7 @@ namespace AssignmentALM.Models.ViewModels
     public class HomeViewModel
     {
         public List<Customer> Customers { get; set; } = new List<Customer>();
+
+        public List<Account> Accounts { get; set; }
     }
 }

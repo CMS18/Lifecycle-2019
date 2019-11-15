@@ -11,27 +11,69 @@ namespace AssignmentALM.Models
         public List<Account> Accounts { get; set; } = new List<Account>();
 
         //Deposit:
-        public void Deposit(decimal amount, int accountNumber)
+        public string Deposit(int accountNumber, decimal amount)
         {
-            if (amount < 0)
+            var account = Accounts.SingleOrDefault(a => a.AccountNumber == accountNumber);
+
+            if (account == null)
             {
-                throw new ArgumentOutOfRangeException();
+                return "Invalid {accountNumber} ";
             }
-            var account = Accounts.SingleOrDefault(n => n.AccountNumber == accountNumber);
-            account.Balance += amount;
+
+            if (amount <= 0)
+            {
+                return "The amount has to be positive.";
+            }
+            else
+            {
+                account.Balance += amount;
+                return "Deposit Success";
+
+            }
+
 
 
         }
+
+
+
         //Withdraw:
-        public void Withdraw(decimal amount, int accountNumber)
+        public string Withdraw(decimal amount, int accountNumber)
         {
             var account = Accounts.SingleOrDefault(c => c.AccountNumber == accountNumber);
-            if (amount > account.Balance || amount < 0)
+            if (account == null)
             {
-                throw new ArgumentOutOfRangeException();
+                return "Invalid {accountNumber} ";
             }
-            account.Balance -= amount;
+
+            if (amount < 0)
+            {
+                return "The amount has to be more than 0.";
+            }
+            if(account.Balance< amount)
+            {
+                return "Insufficient Balance"; 
+            }
+            else
+            {
+                account.Balance -= amount;
+                return "Withdraw Success";
+
+            }
+
+
+
         }
+
+
+
+
+
+
 
     }
 }
+
+
+
+
