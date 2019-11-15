@@ -24,14 +24,15 @@ namespace AssignmentALM.Controllers
         {
             var model = new NewBalanceViewModel();
 
-            return View("NewBalance" , model);
+            return View("Index" , model);
            
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        [Route("")]
-        public IActionResult NewBalance(NewBalanceViewModel model)
+        [Route("Bank")]
+        public IActionResult Index(NewBalanceViewModel model)
+
         {
          
             if (ModelState.IsValid)
