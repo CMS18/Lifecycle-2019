@@ -16,10 +16,12 @@ namespace AssignmentALM.Models.ViewModels
         [Required]
         public decimal Amount { get; set; }
 
+
         public string dispalyAlert { get; set; }
 
         public string updateBalance { get; set; }
     }
 }
+
 
 

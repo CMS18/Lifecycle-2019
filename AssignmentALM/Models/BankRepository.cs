@@ -28,13 +28,8 @@ namespace AssignmentALM.Models
             {
                 account.Balance += amount;
                 return "Deposit Success";
-
             }
-
-
-
         }
-
 
 
         //Withdraw:
@@ -58,18 +53,9 @@ namespace AssignmentALM.Models
             {
                 account.Balance -= amount;
                 return "Withdraw Success";
-
             }
 
-
-
         }
-
-
-
-
-
-
 
     }
 }

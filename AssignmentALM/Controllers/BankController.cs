@@ -33,17 +33,21 @@ namespace AssignmentALM.Controllers
         [Route("")]
         public IActionResult NewBalance(NewBalanceViewModel model)
         {
-            //if(ModelState.IsValid)
-            //{
-            //    if(model.updateBalance == null)
-            //    {
-            //        model.dispalyAlert = _repository.Withdraw(model.Account, model.Amount);
-            //    }
-            //    if(model.updateBalance > )
-            //    {
+         
+            if (ModelState.IsValid)
+            {
+                if (model.updateBalance == "Withdraw")
+                {
 
-            //    }
-            //}
+                    model.dispalyAlert = _repository.Withdraw(model.Amount , model.Account);
+                }
+
+                if(model.updateBalance == "Deposit")
+                {
+                    model.dispalyAlert = _repository.Deposit(model.Account, model.Amount);
+                    
+                }
+            }
 
             return View( model);
 
