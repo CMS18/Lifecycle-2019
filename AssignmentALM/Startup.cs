@@ -26,7 +26,7 @@ namespace AssignmentALM
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
-            services.AddSingleton<BankRepository>();
+           
             var repository = new Models.BankRepository();
 
             var c1 = new Customer()
