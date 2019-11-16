@@ -1,0 +1,35 @@
+﻿@{
+    ViewData["Title"] = "Transfer";
+}
+
+@model AssignmentALM.Models.ViewModels.TransferViewModel
+
+<div class="card-body">
+
+    <h1 class="text-lg-center">Transactions</h1>
+    <h3 class="display-4">Transfer </h3>
+    <div class="card text-white bg-success mb-lg-5" style="max-width: 32rem; height:80px; font-size:x-large">
+        @if (Model.Message != null)
+        {
+            <span>@Model.Message</span>
+        }
+    </div>
+    <span asp-validation-for="Amount" class="text-danger font-weight-bold"></span>
+    <div class="card">
+        <form asp-action="Transfer" asp-controller="Bank" method="post">
+            <div class="card">
+                <label asp-for="FromAcc" class="font-weight-bolder"></label>
+                <input type="text" asp-for="FromAcc" />
+
+                <label asp-for="ToAcc" class="font-weight-bolder"></label>
+                <input type="text" asp-for="ToAcc" />
+
+                <label asp-for="Amount" class="font-weight-bolder"></label>
+                <input type="text" asp-for="Amount" />
+            </div>
+            <div class="card">
+                <input type="submit" value="transfer" class="alert-info" />
+            </div>
+        </form>
+    </div>
+</div>
