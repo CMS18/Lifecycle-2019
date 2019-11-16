@@ -6,15 +6,23 @@
     ViewData["Title"] = "Home Page";
 }
 @model AssignmentALM.Models.ViewModels.HomeViewModel
-<div class="text-center">
-    <h1 class="display-4">Welcome Emran Online Banking </h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-    @foreach (var customer in Model.Customers)
-    {
-        <div>CustomerID: @customer.CustomerNumber Name: @customer.FirstName @customer.LastName</div>
-        @foreach (var account in customer.Accounts)
-        {
-            <div>AccountID: @account.AccountNumber Balance: @account.Balance</div>
-        }
-    }
-</div>
+    <div >
+        <h1 class="display-4">Welcome Emran Online Banking </h1>
+        <div class="card">
+            <div class="card bg-success mb-lg-5" style="font-size:x-large" >
+                @foreach (var customer in Model.Customers)
+                {
+
+                    <div><h2>CustomerID: @customer.CustomerNumber</h2>
+                         <h2>Name: @customer.FirstName  @customer.LastName</h2>
+                </div>
+                    <div class="card">
+                        @foreach (var account in customer.Accounts)
+                        {
+                            <div>Account Number: @account.AccountNumber Balance: @account.Balance</div>
+                        }
+                    </div>
+                }
+            </div>
+        </div>
+    </div>

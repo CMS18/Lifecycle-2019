@@ -1,5 +1,6 @@
 using AssignmentALM.Models;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System;
 using System.Linq;
 
 namespace UnitTestProject1
@@ -8,55 +9,68 @@ namespace UnitTestProject1
     public class UnitTest1
     {
 
-        private BankRepository repository;
+
         [TestMethod]
-        public void Deposit()
+        public void DepositTest()
         {
-            var bankRepo = new BankRepository();
+            var repo = new BankRepository();
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
 
+            repo.Deposit(1, 500);
 
-            var account = bankRepo.Accounts.SingleOrDefault(c=> c.AccountNumber == 1);
-            var currentBalance = account.Balance;
+            var result = repo.Accounts.First().Balance;
+            var expected = 1000;
 
-            bankRepo.Deposit(5000, 1);
-
-            var amount = account.Balance;
-
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(( + 500), amount);
-
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        public void Withdraw()
+        public void WithdrawTest()
         {
-            var bankRepo = new BankRepository();
+            var repo = new BankRepository();
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
 
+            repo.Withdraw(500, 1);
 
-            var account = bankRepo.Accounts.SingleOrDefault(c => c.AccountNumber == 1);
-            var currentBalance = account.Balance;
+            var result = repo.Accounts.First().Balance;
+            var expected = 0;
 
-            bankRepo.Deposit(5000, 1);
-
-            var amount = account.Balance;
-
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual((-500), amount);
-
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
+
         [TestMethod]
-        public void WithdrawOverLimit()
+        public void OverLimitTest()
         {
-            var bankRepo = new BankRepository();
+            var repo = new BankRepository();
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
 
+            repo.Withdraw(501, 1);
 
-            var account = bankRepo.Accounts.SingleOrDefault(c => c.AccountNumber == 1);
-            var currentBalance = account.Balance;
+            var result = repo.Accounts.First().Balance;
+            var expected = 500;
 
-            bankRepo.Withdraw(500000, 1);
-
-            var amount = account.Balance;
-
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual((-500000), amount);
-
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
+
+        [TestMethod]
+        public void NegativeDepositTest()
+        {
+            var repo = new BankRepository();
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
+
+            repo.Deposit(-500, 1);
+
+            var result = repo.Accounts.First().Balance;
+            var expected = 500;
+
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
+        }
+
+
     }
 }
+
