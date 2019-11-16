@@ -27,7 +27,7 @@ namespace AssignmentALM.Models
             else
             {
                 account.Balance += amount;
-                return "Deposit Success" +account.Balance;
+                return "Deposit Success" + " Current Balance:" +account.Balance;
             }
         }
 
@@ -41,9 +41,9 @@ namespace AssignmentALM.Models
                 return "Invalid Account Number" ;
             }
 
-            if (amount < 0)
+            if (amount <= 0)
             {
-                return "The amount has to be more than 0.";
+                return "The amount has to be more than 0 and positive value only.";
             }
             if(account.Balance< amount)
             {
@@ -52,8 +52,8 @@ namespace AssignmentALM.Models
             else
             {
                 account.Balance -= amount;
-                return "Withdraw Success:" + account.Balance;
-            }
+                return "Withdraw Success:" + "Current Balance:" + account.Balance;
+            } 
 
         }
 

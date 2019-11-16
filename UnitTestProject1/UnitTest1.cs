@@ -9,59 +9,68 @@ namespace UnitTestProject1
     public class UnitTest1
     {
 
+
         [TestMethod]
         public void DepositTest()
         {
             var repo = new BankRepository();
             var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
 
-            var balanceUpdate = 4321m;
-            repo.Deposit(500, 1);
+            repo.Deposit(1, 500);
 
-            var result = account.Balance;
+            var result = repo.Accounts.First().Balance;
+            var expected = 1000;
 
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual((balanceUpdate + 100), result);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
         public void WithdrawTest()
         {
-            var bank = new BankRepository();
+            var repo = new BankRepository();
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
 
-            var account = new Account { Balance = 984m, AccountNumber = 2};
+            repo.Withdraw(500, 1);
 
-            var balanceUpdate = 230m;
+            var result = repo.Accounts.First().Balance;
+            var expected = 0;
 
-            bank.Deposit(850, 2);
-
-            var result = account.Balance;
-
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual((balanceUpdate - 2500), result);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
-        [ExpectedException(typeof(ArgumentOutOfRangeException))]
         public void OverLimitTest()
         {
             var repo = new BankRepository();
-            repo.Withdraw(9000023000, 3);
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
+
+            repo.Withdraw(501, 1);
+
+            var result = repo.Accounts.First().Balance;
+            var expected = 500;
+
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
 
         [TestMethod]
         public void NegativeDepositTest()
         {
-            var bank = new BankRepository();
+            var repo = new BankRepository();
+            var account = new Account { Balance = 500m, AccountNumber = 1 };
+            repo.Accounts.Add(account);
 
-            var account = new Account { Balance = 500m, AccountNumber = 1};
+            repo.Deposit(-500, 1);
 
-            var balanceUpdate = 321m;
+            var result = repo.Accounts.First().Balance;
+            var expected = 500;
 
-            bank.Deposit(-5300, 1);
-
-            var result = account.Balance;
-
-            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual((balanceUpdate - 350), result);
+            Microsoft.VisualStudio.TestTools.UnitTesting.Assert.AreEqual(expected, result);
         }
+
+
     }
 }
 
