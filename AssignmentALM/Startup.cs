@@ -21,8 +21,6 @@ namespace AssignmentALM
 
         public IConfiguration Configuration { get; }
 
-
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
@@ -53,21 +51,21 @@ namespace AssignmentALM
             var a1 = new Account()
             {
                 AccountHolder = c1,
-                AccountNumber = 2131,
+                AccountNumber = 1,
                 Balance = 5000
             };
 
             var a2 = new Account()
             {
                 AccountHolder = c2,
-                AccountNumber = 980081,
+                AccountNumber = 2,
                 Balance = 327000
             };
 
             var a3 = new Account()
             {
                 AccountHolder = c3,
-                AccountNumber = 54081,
+                AccountNumber = 3,
                 Balance = 127000
             };
             c1.Accounts.Add(a1);
@@ -82,11 +80,7 @@ namespace AssignmentALM
 
             services.AddSingleton(repository);
 
-
-
         }
-
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)

@@ -17,7 +17,7 @@ namespace AssignmentALM.Models
 
             if (account == null)
             {
-                return "Invalid {accountNumber} ";
+                return "Invalid Account Number ";
             }
 
             if (amount <= 0)
@@ -27,7 +27,7 @@ namespace AssignmentALM.Models
             else
             {
                 account.Balance += amount;
-                return "Deposit Success";
+                return "Deposit Success" +account.Balance;
             }
         }
 
@@ -38,7 +38,7 @@ namespace AssignmentALM.Models
             var account = Accounts.SingleOrDefault(c => c.AccountNumber == accountNumber);
             if (account == null)
             {
-                return "Invalid {accountNumber} ";
+                return "Invalid Account Number" ;
             }
 
             if (amount < 0)
@@ -52,7 +52,7 @@ namespace AssignmentALM.Models
             else
             {
                 account.Balance -= amount;
-                return "Withdraw Success";
+                return "Withdraw Success:" + account.Balance;
             }
 
         }

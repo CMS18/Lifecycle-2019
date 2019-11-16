@@ -4,24 +4,33 @@
 
 @model AssignmentALM.Models.ViewModels.NewBalanceViewModel
 
-<div class="text-center">
-    <h1 class="display-4">Withdraw and deposit </h1>
-    @if (Model.dispalyAlert != null)
-    {
-        <span>@Model.dispalyAlert</span>
-    }
-    <span asp-validation-for="Amount" class="text-danger"></span>
-    <form asp-action="ChangeBalance" asp-controller="Bank" method="post">
-        <fieldset>
-            <label asp-for="Account">
-            </label>
-            <input type="text" asp-for="Account" />
+    <div class="card-body">
 
-            <label asp-for="Amount">
-            </label>
-            <input type="text" asp-for="Amount" />
-        </fieldset>
-        <input type="submit" asp-for="updateBalance" value="withdraw" />
-        <input type="submit" asp-for="updateBalance" value="deposit" />
-    </form>
-</div>
+        <h1 class="text-lg-center">Transactions</h1>
+        <h3 class="display-4">Withdraw and Deposit </h3>
+        <div class="card text-white bg-success mb-lg-5" style="max-width: 18rem; height:60px; font-size:x-large">
+            @if (Model.dispalyAlert != null)
+            {
+                <span>@Model.dispalyAlert</span>
+            }
+        </div>
+        <span asp-validation-for="Amount" class="text-danger font-weight-bold"></span>
+        <div class="card">
+            <form asp-action="Index" asp-controller="Bank" method="post">
+                <div class="card">
+                    <label asp-for="Account" class="font-weight-bolder">
+                    </label>
+                    <input type="text" asp-for="Account" />
+
+                    <label asp-for="Amount" class="font-weight-bolder">
+                    </label>
+                    <input type="text" asp-for="Amount" />
+                </div>
+                <div class="card">
+
+                    <input type="submit" asp-for="updateBalance" value="withdraw" class="alert-info" />
+                    <input type="submit" asp-for="updateBalance" value="deposit" class="alert-success" />
+                </div>
+            </form>
+            </div>
+        </div>

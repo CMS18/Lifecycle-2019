@@ -24,8 +24,8 @@ namespace AssignmentALM.Controllers
         {
             var model = new NewBalanceViewModel();
 
-            return View("Index" , model);
-           
+            return View("Index", model);
+
         }
 
         [HttpPost]
@@ -34,23 +34,23 @@ namespace AssignmentALM.Controllers
         public IActionResult Index(NewBalanceViewModel model)
 
         {
-         
+
             if (ModelState.IsValid)
             {
-                if (model.updateBalance == "Withdraw")
+                if (model.updateBalance == "withdraw")
                 {
 
-                    model.dispalyAlert = _repository.Withdraw(model.Amount , model.Account);
+                    model.dispalyAlert = _repository.Withdraw(model.Amount, model.Account);
                 }
 
-                if(model.updateBalance == "Deposit")
+                if (model.updateBalance == "deposit")
                 {
                     model.dispalyAlert = _repository.Deposit(model.Account, model.Amount);
-                    
+
                 }
             }
 
-            return View( model);
+            return View(model);
 
         }
     }
