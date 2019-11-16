@@ -53,5 +53,31 @@ namespace AssignmentALM.Controllers
             return View(model);
 
         }
+
+        [HttpGet]
+        public IActionResult Transfer()
+        {
+            var model = new TransferViewModel();
+            return View(model);
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public IActionResult Transfer(TransferViewModel model)
+        {
+            if (ModelState.IsValid)
+            {
+                var fromAcc = _repository.Accounts.FirstOrDefault(a => a.AccountNumber == model.FromAcc);
+                if (fromAcc == null)
+                {
+                    model.Message = $"The account {model.FromAcc} does not exist.";
+                }
+                else
+                {
+                    model.Message = fromAcc.Transfer(model.ToAcc, model.Amount, _repository);
+                }
+            }
+            return View(model);
+        }
     }
 }
